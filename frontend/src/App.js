@@ -1,51 +1,115 @@
-import { useEffect } from "react";
-import "./App.css";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import "./App.css";
+
+// Import components
+import HomePage from "./components/HomePage";
+import DocumentAnalysisMode from "./components/DocumentAnalysisMode";
+import AdvancedOptimizationSuite from "./components/AdvancedOptimizationSuite";
+import MVPDashboard from "./components/MVPDashboard";
+
+// Add all FontAwesome icons to the library
+library.add(fas);
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+// Page transition variants
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0.98,
+    y: 20
+  },
+  in: {
+    opacity: 1,
+    scale: 1,
+    y: 0
+  },
+  out: {
+    opacity: 0,
+    scale: 1.02,
+    y: -20
+  }
+};
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
+const pageTransition = {
+  type: "tween",
+  ease: [0.4, 0, 0.2, 1],
+  duration: 0.4
 };
 
 function App() {
   return (
-    <div className="App">
+    <div className="App min-h-screen bg-gray-50">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <motion.div
+                  key="home"
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <HomePage />
+                </motion.div>
+              } 
+            />
+            <Route 
+              path="/document-analysis" 
+              element={
+                <motion.div
+                  key="document-analysis"
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <DocumentAnalysisMode />
+                </motion.div>
+              } 
+            />
+            <Route 
+              path="/advanced-optimization" 
+              element={
+                <motion.div
+                  key="advanced-optimization"
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <AdvancedOptimizationSuite />
+                </motion.div>
+              } 
+            />
+            <Route 
+              path="/mvp-dashboard" 
+              element={
+                <motion.div
+                  key="mvp-dashboard"
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <MVPDashboard />
+                </motion.div>
+              } 
+            />
+          </Routes>
+        </AnimatePresence>
       </BrowserRouter>
     </div>
   );
