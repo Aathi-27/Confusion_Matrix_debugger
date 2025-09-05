@@ -105,6 +105,22 @@ module.exports = {
   			'blob': 'blob 7s infinite',
   			'float': 'float 3s ease-in-out infinite',
   			'shimmer': 'shimmer 1.5s infinite'
+  		},
+  		animationDelay: {
+  			'200': '0.2s',
+  			'400': '0.4s',
+  			'600': '0.6s',
+  			'800': '0.8s',
+  			'1000': '1s',
+  			'1200': '1.2s',
+  			'1400': '1.4s',
+  			'1600': '1.6s',
+  			'1800': '1.8s',
+  			'2000': '2s',
+  			'4000': '4s'
+  		},
+  		borderWidth: {
+  			'3': '3px'
   		}
   	}
   },
