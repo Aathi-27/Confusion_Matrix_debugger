@@ -266,7 +266,7 @@ const ConfidenceAnalysis = () => (
           <div className="text-center p-3 bg-red-50 rounded-lg">
             <div className="text-xl font-bold text-red-600">15%</div>
             <div className="text-sm text-red-800">Low Confidence</div>
-            <div className="text-xs text-red-600">(< 0.6)</div>
+            <div className="text-xs text-red-600">(&lt; 0.6)</div>
           </div>
           <div className="text-center p-3 bg-yellow-50 rounded-lg">
             <div className="text-xl font-bold text-yellow-600">25%</div>
@@ -276,7 +276,7 @@ const ConfidenceAnalysis = () => (
           <div className="text-center p-3 bg-green-50 rounded-lg">
             <div className="text-xl font-bold text-green-600">60%</div>
             <div className="text-sm text-green-800">High Confidence</div>
-            <div className="text-xs text-green-600">(> 0.8)</div>
+            <div className="text-xs text-green-600">(&gt; 0.8)</div>
           </div>
         </div>
       </motion.div>
